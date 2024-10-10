@@ -13,4 +13,12 @@ describe('Test Scenario', () => {
     cy.login('Admin','owner12')
     cy.contains('Invalid credentials').should('be.visible');
   })
+  it('Case Sensitive Username', () => {
+    cy.login('admin','owner12')
+    cy.contains('Invalid credentials').should('be.visible');
+  })
+  it('Case Sensitive Password', () => {
+    cy.login('admin','Owner12')
+    cy.contains('Invalid credentials').should('be.visible');
+  })
 })
