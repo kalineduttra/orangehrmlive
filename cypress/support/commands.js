@@ -5,11 +5,17 @@ Cypress.Commands.add('login', (username,password) => {
     cy.get('.oxd-button').click();
 })
 
+// Reset Password
+Cypress.Commands.add('resetPassword', (username) => {
+    cy.get('.orangehrm-login-forgot > .oxd-text').click();
+    cy.get('.oxd-input').type(username); 
+})
+
 // Admin
 Cypress.Commands.add('admin', (username) => {
     cy.get(':nth-child(1) > .oxd-main-menu-item > .oxd-text').click();
     cy.get(':nth-child(2) > .oxd-input').type(username);
-    cy.get('.oxd-form-actions > .oxd-button--secondary').click;
+    cy.get('.oxd-form-actions > .oxd-button--secondary').click();
 })
 // ***********************************************
 // This example commands.js shows you how to
