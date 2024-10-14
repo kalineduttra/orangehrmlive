@@ -12,9 +12,11 @@ Cypress.Commands.add('resetPassword', (username) => {
 })
 
 // Admin
-Cypress.Commands.add('admin', (username) => {
+Cypress.Commands.add('admin', (username, employeName) => {
     cy.get(':nth-child(1) > .oxd-main-menu-item > .oxd-text').click();
     cy.get(':nth-child(2) > .oxd-input').type(username);
+    cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text').click();
+    cy.get('.oxd-select-dropdown > :nth-child(2)').click();
     cy.get('.oxd-form-actions > .oxd-button--secondary').click();
 })
 // ***********************************************
