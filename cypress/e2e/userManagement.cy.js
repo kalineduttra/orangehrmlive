@@ -1,7 +1,5 @@
 describe('Test Scenario', () => {
-    beforeEach ('URL visit', () => {
-        cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    })
+    
     it(`search for a user that doesn't exist in the system`, () => {
       cy.login('Admin','admin123')
       cy.admin('Ana', ' ')

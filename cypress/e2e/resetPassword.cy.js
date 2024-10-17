@@ -1,7 +1,5 @@
 describe('Test Scenario', () => {
-    beforeEach ('URL visit', () => {
-      cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    })
+    
     it(`Reset a valid user's password`, () => {
         cy.resetPassword('Admin')
         cy.get('.oxd-button--secondary').click()

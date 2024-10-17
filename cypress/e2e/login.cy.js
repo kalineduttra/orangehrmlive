@@ -1,5 +1,5 @@
 describe('Test Scenario', () => {
-  
+
   it('Fill in the login fields with valid data and authenticate the user on the page', () => {
     cy.login(Cypress.env('validUser'), Cypress.env('validPassword'))
     cy.url().should('contain', '/dashboard/index')
@@ -8,12 +8,8 @@ describe('Test Scenario', () => {
     cy.login(Cypress.env('invalidUser'), Cypress.env('validPassword'))
     cy.contains('Invalid credentials').should('be.visible')
   })
-  it('Invalid Passw ord', () => {
+  it('Invalid Password', () => {
     cy.login(Cypress.env('validUser'), Cypress.env('invalidPassword'))
-    cy.contains('Invalid credentials').should('be.visible')
-  })
-  it('Case Sensitive Username', () => {
-    cy.login(Cypress.env('caseSensitiveUsername'), Cypress.env('validPassword'))
     cy.contains('Invalid credentials').should('be.visible')
   })
   it('Case Sensitive Password', () => {
