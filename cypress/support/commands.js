@@ -1,3 +1,14 @@
+// Session
+Cypress.Commands.add('login1', (username, password) => {
+  cy.session([username, password], () => {
+    cy.visit('/login')
+    cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input').type(Cypress.env('validUser'));
+    cy.get(':nth-child(3) > .oxd-input-group > :nth-child(2) > .oxd-input').type(Cypress.env('validPassword'), { log: false });
+    cy.get('.oxd-button').click();
+    cy.url().should('contain', '/dashboard/index')
+  })
+})
+
 // Login
 Cypress.Commands.add('login', (username, password) => {
   cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')

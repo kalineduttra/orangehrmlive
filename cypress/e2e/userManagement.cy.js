@@ -1,7 +1,9 @@
 describe('Test Scenario', () => {
-    
+  beforeEach(() => {
+    cy.login1('/login')
+  })
     it(`search for a user that doesn't exist in the system`, () => {
-      cy.login('Admin','admin123')
+      //cy.login('Admin','admin123')
       cy.admin('Ana', ' ')
       cy.contains('No Records Found').should('be.visible')
       cy.get('.oxd-toast').should('be.visible').contains('No Records Found');
