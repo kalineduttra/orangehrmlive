@@ -1,23 +1,35 @@
-describe('Test Scenario', () => {
+const { validUser, validPassword, invalidUser, invalidPassword, caseSensitivePassword } = Cypress.env()
+const invalidCredentialMessage = 'Invalid credentials'
+const requiredMessage = 'Required'
 
-  it('Fill in the login fields with valid data and authenticate the user on the page', () => {
-    cy.login(Cypress.env('validUser'), Cypress.env('validPassword'))
-    cy.url().should('contain', '/dashboard/index')
+describe('Given that the user is on the login screen', () => {
+  beforeEach(() => {
+    cy.visit('/login')
   })
-  it('Invalid Username', () => {
-    cy.login(Cypress.env('invalidUser'), Cypress.env('validPassword'))
-    cy.contains('Invalid credentials').should('be.visible')
+
+  context('When he fills in the form correctly and clicks on the login button', () => {
+    it('Then he should be redirected to the home page', () => {
+      cy.login(validUser, validPassword)
+      cy.url().should('contain', '/dashboard/index')
+    })
   })
-  it('Invalid Password', () => {
-    cy.login(Cypress.env('validUser'), Cypress.env('invalidPassword'))
-    cy.contains('Invalid credentials').should('be.visible')
-  })
-  it('Case Sensitive Password', () => {
-    cy.login(Cypress.env('validUser'), Cypress.env('caseSensitivePassword'))
-    cy.contains('Invalid credentials').should('be.visible')
-  })
-  it('Unfilled credentials', () => {
-    cy.login(' ', ' ')
-    cy.contains('Required').should('be.visible')
+
+  context('When the user fills in the field incorrectly', () => {
+    it('Invalid Username', () => {
+      cy.login(invalidUser, validPassword)
+      cy.contains(invalidCredentialMessage).should('be.visible')
+    })
+    it('Invalid Password', () => {
+      cy.login(validUser, invalidPassword)
+      cy.contains(invalidCredentialMessage).should('be.visible')
+    })
+    it('Case Sensitive Password', () => {
+      cy.login(validUser, caseSensitivePassword)
+      cy.contains(invalidCredentialMessage).should('be.visible')
+    })
+    it('Unfilled credentials', () => {
+      cy.login(' ', ' ')
+      cy.contains(requiredMessage).should('be.visible')
+    })
   })
 })
