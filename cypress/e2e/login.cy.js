@@ -4,7 +4,7 @@ const requiredMessage = 'Required'
 
 describe('Given that the user is on the login screen', () => {
   beforeEach(() => {
-    cy.visit('/login')
+    cy.visit('/auth/login')
   })
 
   context('When he fills in the form correctly and clicks on the login button', () => {
